@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { RouterOutlet } from '@angular/router';
+import { RouterOutlet, RouterLink } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 import { HeaderComponent } from './header/header.component';
 import { BodyComponent } from './body/body.component';
@@ -11,6 +11,7 @@ import { BodyComponent } from './body/body.component';
   imports: [
     CommonModule,
     RouterOutlet,
+    RouterLink,
     FormsModule,
     HeaderComponent,
     BodyComponent
