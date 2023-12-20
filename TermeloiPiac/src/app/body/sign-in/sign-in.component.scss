@@ -6,3 +6,11 @@
 .register{
   margin: 6rem 0;
 }
+
+.error{
+  height: 2rem;
+  .error-message{
+    border: 1px solid red ;
+    border-radius: 1rem;
+  }
+}

@@ -2,3 +2,15 @@
   background-color: rgb(201, 26, 26);
   color: white;
 }
+
+.input-error{
+  border: 1px solid rgb(201, 26, 26);
+}
+
+.error{
+  height: 2rem;
+  .error-message{
+    border: 1px solid red ;
+    border-radius: 1rem;
+  }
+}

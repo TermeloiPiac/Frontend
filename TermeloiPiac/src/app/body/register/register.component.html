@@ -1,40 +1,121 @@
-<div class="container-fluid">
+<div *ngIf="successRegistration" class="container-fluid">
+  <div class="row justify-content-center text-center m-5">
+    <h2 class="mb-5">Sikeres regisztráció!</h2>
+    <h4>A belépés gombra kattintva beléphetsz a fiókodba.</h4>
+  </div>
+  <div class="row justify-content-center">
+    <a class="col-6 btn btn-red mt-4" href="/belepes">Belépés</a>
+  </div>
+</div>
+<div *ngIf="!successRegistration" class="container-fluid">
   <div class="row my-3 text-center">
     <h2>Regisztráció</h2>
   </div>
   <div class="row justify-content-center text-cetner">
-    <form class="col-12 col-sm-8 mt-3" type="submit">
+    <form
+      class="col-12 col-sm-8 mt-3"
+      name="registerForm"
+      (ngSubmit)="submitRegistration()"
+      [formGroup]="form"
+    >
       <div class="row">
         <div class="col-6">
           <label class="form-label pt-1">Vezetéknév:</label>
-          <input class="form-control" type="text" placeholder="pl.: Kiss" required/>
+          <input
+            class="form-control"
+            [ngClass]="{
+              'input-error': submitted && form.get('firstNameControl')?.errors
+            }"
+            name="firstName"
+            type="text"
+            placeholder="pl.: Kiss"
+            formControlName="firstNameControl"
+            required
+          />
         </div>
         <div class="col-6">
           <label class="form-label pt-1">Keresztnév:</label>
-          <input class="form-control" type="text" placeholder="pl.: Béla" required/>
+          <input
+            class="form-control"
+            [ngClass]="{
+              'input-error': submitted && form.get('lastNameControl')?.errors
+            }"
+            name="lastName"
+            type="text"
+            placeholder="pl.: Béla"
+            formControlName="lastNameControl"
+            required
+          />
         </div>
       </div>
       <div class="row">
         <div class="col-12">
           <label class="form-label pt-1">E-mail cím:</label>
-          <input class="form-control" type="email" placeholder="valami@gmail.com" required/>
+          <input
+            class="form-control"
+            [ngClass]="{
+              'input-error': submitted && form.get('emailControl')?.errors
+            }"
+            name="email"
+            type="text"
+            placeholder="valami@gmail.com"
+            formControlName="emailControl"
+            required
+          />
         </div>
       </div>
       <div class="row">
         <div class="col-6">
           <label class="form-label pt-1">Jelszó:</label>
-          <input class="form-control" type="password" placeholder="minimum 6 karakter" required minlength="6"/>
+          <input
+            class="form-control"
+            [ngClass]="{
+              'input-error': submitted && form.get('passwordControl')?.errors
+            }"
+            name="password"
+            type="password"
+            placeholder="minimum 6 karakter"
+            formControlName="passwordControl"
+            minlength="6"
+            required
+          />
         </div>
         <div class="col-6">
           <label class="form-label pt-1">Jelszó újra:</label>
-          <input class="form-control" type="password" placeholder="minimum 6 karakter" required minlength="6"/>
+          <input
+            class="form-control"
+            [ngClass]="{
+              'input-error':
+                submitted &&
+                (form.get('passwordAgainControl')?.errors || !passwordMatch)
+            }"
+            name="passwordAgain"
+            type="password"
+            placeholder="minimum 6 karakter"
+            formControlName="passwordAgainControl"
+            minlength="6"
+            required
+          />
         </div>
       </div>
       <div class="row">
         <div class="col-6">
           <label class="form-label pt-1">Telefonszám:</label>
-          <input class="form-control" type="text" placeholder="pl.: 06123456789" required/>
+          <input
+            class="form-control"
+            [ngClass]="{
+              'input-error': submitted && form.get('phoneNumberControl')?.errors
+            }"
+            name="phoneNumber"
+            type="text"
+            placeholder="pl.: 06123456789"
+            formControlName="phoneNumberControl"
+            required
+          />
         </div>
+      </div>
+      <div class="row text-center justify-content-center error pt-3 mb-1">
+        <label class="col-6" [ngClass]="{'error-message': registerErrorMessage !== ''}">{{registerErrorMessage}}</label>
       </div>
       <div class="row text-center justify-content-center mb-4">
         <button class="col-6 btn btn-red mt-4" type="submit">

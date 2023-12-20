@@ -7,10 +7,13 @@
       <div class="row justify-content-center">
         <form class="col-7 col-xs-4 mt-3" type="submit">
           <label class="form-label pt-1">E-mail cím:</label>
-          <input class="form-control" type="email" />
+          <input name="email" class="form-control" type="email" [(ngModel)]="email" />
           <label class="form-label pt-1">Jelszó: </label>
-          <input class="form-control" type="password" />
-          <button class="col-8 btn btn-red mt-4" type="submit">
+          <input name="password" class="form-control" type="password" [(ngModel)]="password" />
+          <div class="error pt-3 mb-1">
+            <label class="col-8 " [ngClass]="{'error-message': loginErrorMessage !== ''}">{{loginErrorMessage}}</label>
+          </div>
+          <button class="col-8 btn btn-red mt-4" type="submit" (click)="submitLogin()">
             Belépés
           </button>
         </form>
