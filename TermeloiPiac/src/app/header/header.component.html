@@ -16,13 +16,13 @@
   >
     <ul class="nav navbar-nav">
       <li class="col-md-6 nav-item d-flex justify-content-md-end justify-content-center">
-        <a class="nav-link nav-top-link" aria-current="page" href="">Kezdőlap</a>
+        <a class="nav-link nav-top-link" [routerLink]="['']">Kezdőlap</a>
       </li>
       <li class="col-md-4 nav-item d-flex justify-content-md-start justify-content-center">
-        <a class="nav-link nav-top-link" href="/favorites">Kedvencek</a>
+        <a class="nav-link nav-top-link" [routerLink]="['favorites']">Kedvencek</a>
       </li>
       <li class="col-md-2 nav-item d-flex justify-content-md-end justify-content-center">
-        <a class="nav-link nav-top-link" href="/belepes">Bejelentkezés</a>
+        <a class="nav-link nav-top-link" [routerLink]="['belepes']">{{getLoggedIn() ? username : 'Bejelentkezés'}}</a>
       </li>
     </ul>
   </div>

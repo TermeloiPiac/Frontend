@@ -6,6 +6,8 @@ import { NgClass } from '@angular/common';
 import { Router } from '@angular/router';
 import { ErrorHandler } from '../errorHandler.component';
 
+import { SessionService } from '../../service/session.service';
+
 @Component({
   selector: 'app-sign-in',
   standalone: true,
@@ -13,31 +15,34 @@ import { ErrorHandler } from '../errorHandler.component';
   templateUrl: './sign-in.component.html',
   styleUrl: './sign-in.component.scss'
 })
-export class SignInComponent{
+export class SignInComponent {
+
+  private errorHandler: ErrorHandler = new ErrorHandler();
 
   loginErrorMessage: string = "";
 
   email: string = "";
   password: string = "";
 
-  private errorHandler: ErrorHandler = new ErrorHandler();
-
   constructor(
     private http: HttpClient,
-    private router: Router ) { }
+    private router: Router,
+    private sessionService: SessionService) { }
 
-  submitLogin() {
+  async submitLogin() {
     const headers: HttpHeaders = new HttpHeaders()
       .set('Content-Type', 'application/json')
 
     this.http.post<any>('http://localhost:8080/termeloiPiac/api/auth/login', JSON.stringify({
       email: this.email,
       password: this.password
-      }), { headers: headers } )
+      }), { headers: headers, withCredentials: true } )
         .subscribe({
-          next: (successResponse) => {
+          next: async () => {
             this.loginErrorMessage = "";
-            localStorage.setItem('token', successResponse.accessToken);
+            this.sessionService.setLoggedStatus(true);
+            await this.sessionService.loadUserData();
+            this.sessionService.sendUpdate(true, this.sessionService.getUsername());
           },
           error: (errorResponse) => {
             this.loginErrorMessage = this.errorHandler.handleError(errorResponse);
