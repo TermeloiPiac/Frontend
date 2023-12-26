@@ -14,12 +14,12 @@
     class="row nav-menu collapse navbar-collapse"
     id="navbarNav"
   >
-    <ul class="nav navbar-nav">
-      <li class="col-md-6 nav-item d-flex justify-content-md-end justify-content-center">
-        <a class="nav-link nav-top-link" [routerLink]="['']">Kezdőlap</a>
+    <ul class="nav navbar-nav justify-content-md-between">
+      <li class="col-md-2 nav-item d-flex justify-content-md-center justify-content-center">
+        <a class="nav-link nav-top-link"></a>
       </li>
-      <li class="col-md-4 nav-item d-flex justify-content-md-start justify-content-center">
-        <a class="nav-link nav-top-link" [routerLink]="['favorites']">Kedvencek</a>
+      <li class="col-md-auto nav-item d-flex justify-content-md-center justify-content-center">
+        <a class="nav-link nav-top-link" [routerLink]="['']">Kezdőlap</a>
       </li>
       <li class="col-md-2 nav-item d-flex justify-content-md-end justify-content-center">
         <a class="nav-link nav-top-link" [routerLink]="[loggedIn ? 'profil' : 'belepes']">{{getLoggedIn() ? username : 'Bejelentkezés'}}</a>
