@@ -11,7 +11,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { HttpClient } from '@angular/common/http';
 import { HttpHeaders } from '@angular/common/http';
 import { CommonModule, NgClass } from '@angular/common';
-import { ErrorHandler } from '../errorHandler.component';
+import { ErrorHandler } from '../../core/errors/errorHandler.component';
 
 @Component({
   selector: 'app-register',

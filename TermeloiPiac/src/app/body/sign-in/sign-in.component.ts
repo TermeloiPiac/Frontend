@@ -4,7 +4,7 @@ import { HttpHeaders } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
 import { NgClass } from '@angular/common';
 import { Router } from '@angular/router';
-import { ErrorHandler } from '../errorHandler.component';
+import { ErrorHandler } from '../../core/errors/errorHandler.component';
 
 import { SessionService } from '../../service/session.service';
 

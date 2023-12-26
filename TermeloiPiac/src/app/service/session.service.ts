@@ -2,7 +2,6 @@ import { Injectable } from "@angular/core";
 import { HttpClient } from '@angular/common/http'
 import { User } from "../shared/DTO/User";
 import { Observable, Subject, firstValueFrom} from "rxjs";
-import { error } from "console";
 
 
 @Injectable({

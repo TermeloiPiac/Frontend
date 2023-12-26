@@ -1,22 +1,32 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { Map, View } from 'ol';
+import TileLayer from 'ol/layer/Tile';
+import OSM from 'ol/source/OSM';
 
-import { GoogleMapsModule } from '@angular/google-maps'
 
 @Component({
   selector: 'app-map',
   standalone: true,
-  imports: [GoogleMapsModule],
+  imports: [],
   templateUrl: './map.component.html',
   styleUrl: './map.component.scss'
 })
-export class MapComponent {
-  mapOptions: google.maps.MapOptions = {
-    center: { lat: 47.50016265006108, lng: 19.080664063213064 },
-    zoom: 14,
-    streetViewControl: false,
-    fullscreenControl: false,
-    keyboardShortcuts: false,
-    mapTypeControl: false,
-    disableDoubleClickZoom: true
-  };
+export class MapComponent implements OnInit{
+  
+  map: Map;
+
+  ngOnInit(): void {
+    this.map = new Map({
+      view: new View({
+        center: [0, 0],
+        zoom: 1,
+      }),
+      layers: [
+        new TileLayer({
+          source: new OSM(),
+        }),
+      ],
+      target: 'ol-map'
+    });
+  }
 }

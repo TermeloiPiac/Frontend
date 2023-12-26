@@ -22,7 +22,7 @@
         <a class="nav-link nav-top-link" [routerLink]="['favorites']">Kedvencek</a>
       </li>
       <li class="col-md-2 nav-item d-flex justify-content-md-end justify-content-center">
-        <a class="nav-link nav-top-link" [routerLink]="['belepes']">{{getLoggedIn() ? username : 'Bejelentkezés'}}</a>
+        <a class="nav-link nav-top-link" [routerLink]="[loggedIn ? 'profil' : 'belepes']">{{getLoggedIn() ? username : 'Bejelentkezés'}}</a>
       </li>
     </ul>
   </div>
