@@ -2,6 +2,8 @@ import { Injectable } from "@angular/core";
 import { HttpClient } from '@angular/common/http'
 import { User } from "../shared/DTO/User";
 import { Observable, Subject, firstValueFrom} from "rxjs";
+import { HttpHeaders } from '@angular/common/http';
+
 
 
 @Injectable({
@@ -37,6 +39,16 @@ export class SessionService{
       this.userData = data;
     }
   }
+
+  // async removeSessionCookies(){
+  //   const headers: HttpHeaders = new HttpHeaders()
+  //     .set('Content-Type', 'application/json')
+
+  //   const data$: Observable<any> = this.http.patch<any>('http://localhost:8080/termeloiPiac/api/account/getUserData', JSON.stringify({
+  //     email: this.email,
+  //     password: this.password
+  //     }), { headers: headers, withCredentials: true })
+  // }
 
   getUsername(){
     return this.userData.username;

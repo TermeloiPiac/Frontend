@@ -5,13 +5,20 @@ import { FormsModule } from '@angular/forms';
 import { NgClass } from '@angular/common';
 import { Router } from '@angular/router';
 import { ErrorHandler } from '../../core/errors/errorHandler.component';
+import { RouterModule, RouterOutlet } from '@angular/router';
+
 
 import { SessionService } from '../../service/session.service';
 
 @Component({
   selector: 'app-sign-in',
   standalone: true,
-  imports: [FormsModule, NgClass],
+  imports: [
+    FormsModule,
+    RouterModule,
+    RouterOutlet,
+    NgClass
+  ],
   templateUrl: './sign-in.component.html',
   styleUrl: './sign-in.component.scss'
 })
@@ -43,6 +50,7 @@ export class SignInComponent {
             this.sessionService.setLoggedStatus(true);
             await this.sessionService.loadUserData();
             this.sessionService.sendUpdate(true, this.sessionService.getUsername());
+            window.location.reload();
           },
           error: (errorResponse) => {
             this.loginErrorMessage = this.errorHandler.handleError(errorResponse);

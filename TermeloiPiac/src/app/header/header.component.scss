@@ -1,7 +1,6 @@
 .header{
   background-color: rgb(201, 26, 26);
   color: white;
-  height: auto;
 }
 
 .nav-top-link{
@@ -9,9 +8,22 @@
 }
 
 .nav-menu{
-  padding: 0.4em 2em;
+  padding: 0 2rem;
 }
 
 .nav-item{
-  padding-right: 0.5em;
+  padding-right: 0.5rem;
+}
+
+.nav-link{
+  padding: 1rem 0.5rem;
+}
+
+.dropdown-menu{
+  border-radius: 0%;
+}
+
+.nav-item:hover a{
+  background-color: white;
+  color: black;
 }

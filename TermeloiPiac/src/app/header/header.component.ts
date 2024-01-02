@@ -3,11 +3,13 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import { SessionService } from '../service/session.service';
 import { RouterModule, RouterOutlet } from '@angular/router';
 import { Subscription } from 'rxjs';
+import { CookieService } from 'ngx-cookie-service';
 
 @Component({
   selector: 'app-header',
   standalone: true,
-  imports: [CommonModule,
+  imports: [
+    CommonModule,
     RouterOutlet,
     RouterModule
   ],
@@ -16,11 +18,12 @@ import { Subscription } from 'rxjs';
 })
 export class HeaderComponent implements OnInit, OnDestroy{
 
-  loggedIn: boolean = false;
+  loggedIn: any = false;
   username:string;
   data: Promise<any>;
   private headerSubscription: Subscription;
-  constructor(private sessionService: SessionService){
+  constructor(private sessionService: SessionService,
+    private cookieService: CookieService){
     this.headerSubscription = this.sessionService.getUpdate().subscribe(
       (response) => {
         this.loggedIn = response.logFlag;
@@ -28,14 +31,16 @@ export class HeaderComponent implements OnInit, OnDestroy{
       });
   }
 
-  async ngOnInit() {
-    this.username = this.sessionService.getUsername()
-    this.loggedIn = this.sessionService.getLoggedStatus()
+  ngOnInit() {
+    this.username = this.sessionService.getUsername();
+    this.loggedIn = this.sessionService.getLoggedStatus();
   }
 
-  getLoggedIn(){
-    return this.loggedIn;
+  async signOut(){
+    // await this.sessionService.removeSessionCookies()
+    window.location.reload();
   }
+
 
   ngOnDestroy() {
     this.headerSubscription.unsubscribe();

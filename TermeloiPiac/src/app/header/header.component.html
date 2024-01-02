@@ -15,14 +15,18 @@
     id="navbarNav"
   >
     <ul class="nav navbar-nav justify-content-md-between">
-      <li class="col-md-2 nav-item d-flex justify-content-md-center justify-content-center">
-        <a class="nav-link nav-top-link"></a>
-      </li>
+      <li class="col-md-1 nav-item d-flex justify-content-md-center justify-content-center"></li>
       <li class="col-md-auto nav-item d-flex justify-content-md-center justify-content-center">
-        <a class="nav-link nav-top-link" [routerLink]="['']">Kezdőlap</a>
+        <a class="nav-link nav-top-link" [routerLink]="['/']">Kezdőlap</a>
       </li>
-      <li class="col-md-2 nav-item d-flex justify-content-md-end justify-content-center">
-        <a class="nav-link nav-top-link" [routerLink]="[loggedIn ? 'profil' : 'belepes']">{{getLoggedIn() ? username : 'Bejelentkezés'}}</a>
+      <li class="col-md-1 nav-item d-flex justify-content-md-end justify-content-center dropdown">
+        <a class="nav-link nav-top-link" [ngClass]="{'dropdown-toggle' : loggedIn}" role="button" id="dropdownMenuLink"
+         data-bs-toggle="dropdown" aria-expanded="false" [routerLink]="loggedIn ? [] : ['/belepes']">{{loggedIn ? username : 'Bejelentkezés'}}</a>
+        <ul *ngIf="loggedIn" class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+          <li><a class="dropdown-item" [routerLink]="['/profil']">Profil</a></li>
+          <li><a class="dropdown-item" [routerLink]="['/beallitasok']">Beállítások</a></li>
+          <li><a class="dropdown-item" [routerLink]="['/']" (click)="signOut()">Kijelentkezés</a></li>
+        </ul>
       </li>
     </ul>
   </div>

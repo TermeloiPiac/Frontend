@@ -31,6 +31,7 @@ import { HttpClientModule } from '@angular/common/http';
 
 export class AppComponent implements OnInit{
 
+
   constructor(private sessionService: SessionService){}
   initLoaded: boolean = false;
 
